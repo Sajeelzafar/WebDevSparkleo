@@ -32,6 +32,7 @@
   flex-direction: column;
   width: 60%;
   margin-top: 5rem;
+  margin-bottom: 5rem;
   padding-bottom: 2rem;
   border: 2px solid var(--header);
   border-radius: 2.5%;
@@ -84,4 +85,33 @@
   border: none;
   color: white;
   border-radius: 1rem;
+}
+
+.employeeList {
+  background-color: var(--header);
+  width: 100%;
+  flex-direction: column;
+  color: white;
+  padding-bottom: 10rem;
+  padding-top: 2.5rem;
+}
+
+.employeeDetails {
+  border-radius: 10px;
+  justify-content: space-between;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  background-color: rgb(38, 110, 176);
+  width: 65%;
+}
+
+.leftSideListItems {
+  flex-direction: column;
+  list-style-type: none;
+  padding: 0 0 1rem 0;
+  margin: 0;
+}
+
+.rightSideList img {
+  cursor: pointer;
 }
