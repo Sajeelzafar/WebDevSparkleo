@@ -1,11 +1,16 @@
-let initialState = [];
+let initialState = [{
+    firstname: "Saira",
+    lastname: "Rubab",
+    email: "sadew@fs.fdnwo",
+    phone: 321,
+}];
 
 export const addAction = (obj) => {
     return {
         type: 'ADD',
         payload: {
-            first_name: obj.firstname,
-            last_name: obj.lastname,
+            firstname: obj.firstname,
+            lastname: obj.lastname,
             email: obj.email,
             phone: obj.phone,
         },
@@ -18,7 +23,7 @@ export const readEmployee = () => {
     }
 }
 
-const removeAction = (obj) => {
+export const removeAction = (obj) => {
     return {
         type: 'DELETE',
         payload: obj.id,
@@ -29,10 +34,11 @@ const removeAction = (obj) => {
 const employeeHandler = (state=initialState, action) => {
     switch(action.type){
         case 'ADD':
+            console.log(state);
             return [...state,
                 {
-                    first_name: action.payload.firstname,
-                    last_name: action.payload.lastname,
+                    firstname: action.payload.firstname,
+                    lastname: action.payload.lastname,
                     email: action.payload.email,
                     phone: action.payload.phone,
                 }];

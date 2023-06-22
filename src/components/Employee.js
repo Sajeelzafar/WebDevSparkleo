@@ -29,7 +29,7 @@ const reset = () => {
 }
 
 const Addemployee = () => {
-    const employee = useSelector((initialState) => initialState.employeeHandler);
+    const employee = useSelector((state) => state.employeeHandler);
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(readEmployee());
@@ -49,7 +49,7 @@ const Addemployee = () => {
                 <label>Email <span className="red-star">*</span> </label>
                 <input className="email" type="email" placeholder="Email" value={email} onChange={handleChange} />
                 <label> Phone <span className="red-star">*</span> </label>
-                <input className="phone" type="number" placeholder="Phone Number" value={phone} onChange={handleChange} />
+                <input className="phone" type="text" placeholder="Phone Number" value={phone} onChange={handleChange} />
             </div>
 
             <div className="formButtons display">
@@ -64,7 +64,6 @@ const Addemployee = () => {
                         email: email,
                         phone: phone,
                         };
-                        reset();
                         dispatch(addAction(obj));
                     }}>
                     ADD
