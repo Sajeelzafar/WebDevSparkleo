@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './stylesandImages/Navbar.css';
 import { v4 as uuidv4 } from 'uuid';
-import { useDispatch } from "react-redux";
-import { addAction } from "../redux/employee";
+import { useDispatch, useSelector } from "react-redux";
+import { addAction, readEmployee } from "../redux/employee";
 
 let fname, lname, email, phone;
 
@@ -29,7 +29,12 @@ const reset = () => {
 }
 
 const Addemployee = () => {
+    const employee = useSelector((initialState) => initialState.employeeHandler);
     const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(readEmployee());
+        console.log(employee);
+    }, []);
     return(
         <form className="form display">
             <div className="formHeadingContainer">
@@ -37,14 +42,14 @@ const Addemployee = () => {
             </div>
 
             <div className="formInputContainer grid">
-                <label> First Name <span class="red-star">*</span> </label>
-                <input className="firstname" type="text" placeholder="First Name"  value={fname} onChange={handleChange} required/>
-                <label> Last Name <span class="red-star">*</span> </label>
-                <input className="lastname" type="text" placeholder="Last Name" value={lname} onChange={handleChange} required/>
-                <label>Email <span class="red-star">*</span> </label>
-                <input className="email" type="text" placeholder="Email" value={email} onChange={handleChange} required/>
-                <label> Phone <span class="red-star">*</span> </label>
-                <input className="phone" type="number" placeholder="Phone Number" value={phone} onChange={handleChange} required/>
+                <label> First Name <span className="red-star">*</span> </label>
+                <input className="firstname" type="text" placeholder="First Name"  value={fname} onChange={handleChange} />
+                <label> Last Name <span className="red-star">*</span> </label>
+                <input className="lastname" type="text" placeholder="Last Name" value={lname} onChange={handleChange} />
+                <label>Email <span className="red-star">*</span> </label>
+                <input className="email" type="email" placeholder="Email" value={email} onChange={handleChange} />
+                <label> Phone <span className="red-star">*</span> </label>
+                <input className="phone" type="number" placeholder="Phone Number" value={phone} onChange={handleChange} />
             </div>
 
             <div className="formButtons display">
