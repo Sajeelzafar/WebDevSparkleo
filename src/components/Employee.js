@@ -1,40 +1,38 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import './stylesandImages/Navbar.css';
 import { v4 as uuidv4 } from 'uuid';
-import { useDispatch, useSelector } from "react-redux";
-import { addAction, readEmployee } from "../redux/employee";
-
-let fname, lname, email, phone;
-
-const handleChange = (event) => {
-    if (event.target.className === 'firstname') {
-        fname = event.target.value;
-    }
-    if (event.target.className === 'lastname') {
-        lname = event.target.value;
-    }
-    if (event.target.className === 'email') {
-        email = event.target.value;
-    }
-    if (event.target.className === 'phone') {
-        phone = event.target.value;
-    }
-};
-
-const reset = () => {
-    fname = '';
-    lname = '';
-    email = '';
-    phone = '';
-}
+import { useDispatch } from "react-redux";
+import { addAction } from "../redux/employee";
 
 const Addemployee = () => {
-    const employee = useSelector((state) => state.employeeHandler);
     const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(readEmployee());
-        console.log(employee);
-    }, []);
+    const [fname, setFname] = useState('');
+    const [lname, setLname] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+
+    const handleChange = (event) => {
+        if (event.target.className === 'firstname') {
+            setFname(event.target.value);
+        }
+        if (event.target.className === 'lastname') {
+            setLname(event.target.value);
+        }
+        if (event.target.className === 'email') {
+            setEmail(event.target.value);
+        }
+        if (event.target.className === 'phone') {
+            setPhone(event.target.value);
+        }
+    };
+
+    const reset = () => {
+        setFname('');
+        setLname('');
+        setEmail('');
+        setPhone('');
+    }
+    
     return(
         <form className="form display">
             <div className="formHeadingContainer">
@@ -56,7 +54,8 @@ const Addemployee = () => {
                 <button className="clearButton" onClick={() => {
                     reset();
                 }}>CLEAR ALL</button>
-                <button className="addButton" onClick={() => {
+                <button className="addButton" onClick={(event) => {
+                    event.preventDefault();
                     let obj = {
                         id: uuidv4(),
                         firstname: fname,
