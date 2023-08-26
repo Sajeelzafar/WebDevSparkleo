@@ -51,20 +51,25 @@ const Addemployee = () => {
             </div>
 
             <div className="formButtons display">
-                <button className="clearButton" onClick={() => {
+                <button className="clearButton" onClick={(event) => {
+                    event.preventDefault();
                     reset();
                 }}>CLEAR ALL</button>
                 <button className="addButton" onClick={(event) => {
                     event.preventDefault();
-                    let obj = {
-                        id: uuidv4(),
-                        firstname: fname,
-                        lastname: lname,
-                        email: email,
-                        phone: phone,
-                        };
+                    if(fname === '' || lname === '' || email === '' || phone === ''){
+                        alert("Fill in all the required fields");
+                    }
+                    else {
+                        let obj = {
+                            id: uuidv4(),
+                            firstname: fname,
+                            lastname: lname,
+                            email: email,
+                            phone: phone,
+                            };
                         dispatch(addAction(obj));
-                    }}>
+                    }}}>
                     ADD
                 </button>
             </div>
